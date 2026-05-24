@@ -63,12 +63,20 @@ Open your watchtower URL → tap the `⚙` button (bottom right) → bookmarklet
 **On desktop:** drag the orange "save to watchtower" link to your bookmarks bar.
 
 **On mobile (the way you'll actually use it):**
-1. Bookmark *any* page in your browser (just to create a bookmark to edit)
-2. Open the bookmarks editor
-3. Paste the bookmarklet code from the settings screen into the URL field
-4. Rename it "save to watchtower"
 
-Now, anywhere on LinkedIn / Naukri / Indeed / company sites: open a job page → tap your bookmarks → tap "save to watchtower" → answer 3 prompts (title, company, JD) → it opens watchtower with that job added.
+**Option A — Android share target (recommended):**
+1. Open your watchtower URL in Chrome on Android
+2. Chrome menu ⋮ → "Add to Home Screen" → "Install" (this installs it as a PWA)
+3. Now in any app (LinkedIn, Naukri, Chrome on any job page), tap the **share** button → "watchtower" appears in the share sheet → tap it → the add-job form opens with the URL pre-filled → fill in title/company/JD → save
+
+**Option B — Manual + button:**
+1. Open watchtower
+2. Tap the orange **+** button at the bottom-right
+3. Tap "📋 paste URL from clipboard" if you have a URL copied
+4. Fill in title, company, JD text from the job page
+5. Tap "add to board"
+
+**Why not bookmarklet on Android:** Chrome on Android blocks `javascript:` URLs in bookmarks for security. Use the share target or + button instead. Desktop browsers (Chrome / Edge / Firefox on Windows / Mac) still support the bookmarklet — drag from the settings screen to your bookmarks bar.
 
 ---
 

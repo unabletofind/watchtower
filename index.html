@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>watchtower — private job board</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0e0d0b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -111,6 +117,7 @@
     <button class="close" id="add-close">×</button>
     <h2>add job manually</h2>
     <p class="hint">paste from any job page. URL is required; the rest helps with matching.</p>
+    <button class="btn" id="paste-clipboard-btn" style="margin-bottom: 12px;">📋 paste URL from clipboard</button>
     <label>job title</label>
     <input type="text" id="add-title" placeholder="SOC Analyst L2">
     <label>company</label>
@@ -126,5 +133,14 @@
 </div>
 
 <script src="assets/app.js"></script>
+<script>
+  // Register service worker for PWA install + share-target on Android.
+  // Silent failure if unsupported (e.g. desktop file:// or older browsers).
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => { /* fine */ });
+    });
+  }
+</script>
 </body>
 </html>
