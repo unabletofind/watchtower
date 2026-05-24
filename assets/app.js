@@ -16,6 +16,7 @@ const State = {
   search: "",
   sortBy: "alignment-desc",
   sourceFilter: "",
+  recencyDays: "",   // "" = any time, "1" / "3" / "7" / "14" / "30" = max age in days
 };
 
 // ──────────────────────────────────────────────
@@ -238,6 +239,19 @@ function visibleJobs() {
   // Source filter
   if (State.sourceFilter) {
     list = list.filter(j => (j.source || "").startsWith(State.sourceFilter));
+  }
+
+  // Recency filter — uses posted_at (when company posted) if available, falls back to fetched_at
+  if (State.recencyDays) {
+    const days = parseInt(State.recencyDays, 10);
+    const cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
+    list = list.filter(j => {
+      const dateStr = j.posted_at || j.fetched_at;
+      if (!dateStr) return false;  // No date → exclude when recency is applied
+      const t = new Date(dateStr).getTime();
+      if (isNaN(t)) return false;
+      return t >= cutoff;
+    });
   }
 
   // Sort
@@ -740,6 +754,11 @@ function wireUp() {
 
   document.getElementById("filter-source").addEventListener("change", (e) => {
     State.sourceFilter = e.target.value;
+    render();
+  });
+
+  document.getElementById("filter-recency").addEventListener("change", (e) => {
+    State.recencyDays = e.target.value;
     render();
   });
 
