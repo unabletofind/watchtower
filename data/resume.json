@@ -1,0 +1,60 @@
+{
+  "name": "Bonu Swetha Devi Sai Priya",
+  "headline": "Cybersecurity Analyst | SOC | Threat Intelligence (in progress)",
+  "location": "Hyderabad, India",
+  "experience_years": 1.5,
+  "current_roles": [
+    {
+      "title": "Cybersecurity Analyst",
+      "company": "TriArmour AI Private Limited",
+      "since": "2024-11",
+      "stack": ["Microsoft Sentinel", "Microsoft Defender for Endpoint", "Defender for Office 365", "Entra ID", "MDCA"],
+      "focus": ["Identity investigations", "Endpoint investigations", "Email investigations", "Teaching SOC operations"]
+    },
+    {
+      "title": "L1 Threat Validation Analyst",
+      "company": "CyberMSI",
+      "active": true
+    }
+  ],
+  "education": [
+    {"degree": "B.Tech in Cybersecurity"}
+  ],
+  "certifications": [
+    "CDSA (Certified Defensive Security Analyst, Hack The Box)"
+  ],
+  "skills": {
+    "siem_xdr": ["Microsoft Sentinel", "Microsoft Defender", "MDE", "MDCA", "Defender for Office 365"],
+    "identity": ["Entra ID", "IAM", "Conditional Access", "Zscaler"],
+    "threat_intelligence": ["MITRE ATT&CK", "Diamond Model", "STIX", "TAXII"],
+    "malware_analysis_learning": ["Ghidra", "ANY.RUN", "MalwareBazaar"],
+    "query_languages": ["KQL"],
+    "concepts": ["SOC operations", "Incident response", "Detection engineering", "Phishing analysis", "Endpoint forensics", "Email investigations", "5W documentation"],
+    "soft": ["Teaching", "Technical writing", "Investigation reasoning"]
+  },
+  "keywords_flat": [
+    "cybersecurity", "security analyst", "SOC", "SOC analyst", "L1", "L2",
+    "Microsoft Sentinel", "Sentinel", "Defender", "MDE", "MDCA", "Entra",
+    "Azure AD", "Active Directory", "IAM", "Zscaler", "MITRE ATT&CK",
+    "ATT&CK", "threat intelligence", "threat intel", "TI", "incident response",
+    "IR", "detection engineering", "KQL", "Kusto", "phishing", "endpoint",
+    "EDR", "XDR", "SIEM", "malware analysis", "malware", "Ghidra", "ANY.RUN",
+    "STIX", "TAXII", "Diamond Model", "CDSA", "Hack The Box", "HTB",
+    "blue team", "defensive security", "incident handling", "alerting",
+    "triage", "investigation", "forensics", "Splunk", "ELK", "Elastic"
+  ],
+  "weak_areas_for_honesty": [
+    "Limited Splunk hands-on (Microsoft-first stack)",
+    "No CISSP / CEH / OSCP yet",
+    "Malware analysis still in learning phase, not production",
+    "Less than 2 years total experience",
+    "No cloud security depth in AWS/GCP yet"
+  ],
+  "links": {
+    "github": "https://github.com/unabletofind",
+    "portfolio": "https://unabletofind.github.io",
+    "medium": "https://medium.com/@swethadevi1125",
+    "linkedin": "https://linkedin.com/in/bonu-swetha-devi-sai-priya"
+  },
+  "resume_full_text": "Bonu Swetha Devi Sai Priya — Cybersecurity Analyst based in Hyderabad. Currently Cybersecurity Analyst at TriArmour AI (since November 2024), handling identity, endpoint, and email investigations on the Microsoft security stack: Microsoft Sentinel, Defender for Endpoint, Defender for Office 365, Entra ID, and MDCA. Also teaches SOC operations, IAM, Zscaler, and ethical hacking to IT professionals. Concurrently L1 Threat Validation Analyst at CyberMSI. B.Tech in Cybersecurity. Certified Defensive Security Analyst (CDSA) from Hack The Box. Strong in KQL, MITRE ATT&CK mapping, 5W investigation documentation, detection engineering basics, and incident response triage. Currently building toward Threat Intelligence Researcher specializing in Malware Analysis — learning Ghidra, ANY.RUN, MalwareBazaar, MITRE ATT&CK, Diamond Model, STIX/TAXII. Maintains a public security portfolio at unabletofind.github.io with deep-dive blog posts on real incidents and APT analysis."
+}

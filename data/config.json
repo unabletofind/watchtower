@@ -1,0 +1,55 @@
+{
+  "keywords": {
+    "required_any": ["cybersecurity", "information security", "cyber security", "infosec", " security "],
+    "exclude_if_any_in_title": ["sales", "marketing", "physical security", "security guard", "facility security"]
+  },
+  "location_preferences": {
+    "preferred": ["Hyderabad", "Bangalore", "Bengaluru", "India", "Remote"],
+    "include_remote_global": true
+  },
+  "greenhouse_companies": [
+    "wiz", "crowdstrike", "snowflake", "databricks", "stripe", "anthropic",
+    "cloudflare", "datadog", "snyk", "okta", "1password", "tenable",
+    "rapid7", "arcticwolf", "abnormal", "material-security", "tines",
+    "vanta", "drata", "chainguard", "github", "vercel", "openai",
+    "notion", "figma", "linear", "ramp", "plaid", "brex", "mercury",
+    "coinbase", "discord", "reddit", "shopify", "huntress",
+    "sentinelone", "sumologic", "splunk", "elastic", "lacework",
+    "expel", "darktrace", "armis", "claroty", "ordr", "axonius",
+    "torq", "cribl", "panther", "exabeam", "securonix", "anvilogic",
+    "trail-of-bits", "binarly", "greynoise", "censys", "intel471",
+    "recordedfuture", "mandiant", "huntio"
+  ],
+  "lever_companies": [
+    "paloaltonetworks", "wiz", "ramp", "anthropic", "netflix",
+    "kayak", "blockchain", "lyft", "shopify", "checkmarx",
+    "noname-security", "pentera", "salt-security", "orca-security",
+    "sysdig", "aqua", "snyk", "veracode", "zerofox", "deepwatch"
+  ],
+  "ashby_companies": [
+    "ramp", "linear", "vanta", "openai", "anthropic", "perplexity",
+    "browserbase", "anrok", "watershed"
+  ],
+  "smartrecruiters_companies": [
+    "atos", "atosindia"
+  ],
+  "workable_companies": [],
+  "use_jsearch": false,
+  "use_adzuna": true,
+  "adzuna_country": "in",
+  "search_terms_for_aggregators": [
+    "cybersecurity analyst",
+    "security analyst",
+    "soc analyst",
+    "threat intelligence",
+    "malware analyst",
+    "information security",
+    "incident response",
+    "detection engineer"
+  ],
+  "fetch_settings": {
+    "max_jobs_per_source": 50,
+    "max_total_jobs_per_run": 500,
+    "stale_after_days": 30
+  }
+}
