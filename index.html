@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>watchtower — private job board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="logo">▲</div>
+    <div>
+      <h1>watchtower</h1>
+      <p class="sub">private job board · cybersecurity</p>
+    </div>
+  </div>
+  <div class="meta">
+    <span id="last-updated">loading…</span>
+    <button id="refresh-btn" title="reload data">↻</button>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="new" class="active">new <span class="count" id="count-new">0</span></button>
+  <button data-tab="saved">saved <span class="count" id="count-saved">0</span></button>
+  <button data-tab="applied">applied <span class="count" id="count-applied">0</span></button>
+  <button data-tab="interview">interview <span class="count" id="count-interview">0</span></button>
+  <button data-tab="closed">closed <span class="count" id="count-closed">0</span></button>
+</nav>
+
+<section class="controls">
+  <input type="search" id="search" placeholder="search title, company, keywords…" />
+  <select id="filter-source">
+    <option value="">all sources</option>
+  </select>
+  <select id="sort">
+    <option value="alignment-desc">best fit first</option>
+    <option value="date-desc">newest first</option>
+    <option value="company-asc">company A–Z</option>
+  </select>
+</section>
+
+<main id="job-list"></main>
+
+<div class="empty hidden" id="empty-state">
+  <div class="empty-glyph">∅</div>
+  <p>nothing here yet.</p>
+  <p class="empty-hint">if this is the new tab, wait for the next fetch (4am / 4pm IST) or trigger one manually from the GitHub Actions tab.</p>
+</div>
+
+<!-- Job detail modal -->
+<div class="modal hidden" id="modal">
+  <div class="modal-inner">
+    <button class="close" id="modal-close">×</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- Add job manually (bookmarklet target also) -->
+<button class="fab" id="add-fab" title="add job manually">+</button>
+
+<!-- Settings / backup -->
+<button class="fab fab-2" id="settings-fab" title="settings">⚙</button>
+
+<div class="modal hidden" id="settings-modal">
+  <div class="modal-inner">
+    <button class="close" id="settings-close">×</button>
+    <h2>settings</h2>
+
+    <section class="settings-section">
+      <h3>backup &amp; restore</h3>
+      <p class="hint">your applied/saved statuses live only in this browser. export regularly.</p>
+      <button class="btn" id="export-btn">export backup (.json)</button>
+      <label class="btn-label">
+        import backup
+        <input type="file" id="import-input" accept=".json" hidden>
+      </label>
+    </section>
+
+    <section class="settings-section">
+      <h3>llm key (optional)</h3>
+      <p class="hint">paste your Anthropic API key to enable smart resume scoring &amp; tailoring. stored locally only.</p>
+      <input type="password" id="llm-key" placeholder="sk-ant-…" />
+      <button class="btn" id="save-key-btn">save key</button>
+      <button class="btn btn-danger" id="clear-key-btn">clear key</button>
+    </section>
+
+    <section class="settings-section">
+      <h3>bookmarklet</h3>
+      <p class="hint">drag this to your bookmarks bar (desktop) or save it as a bookmark and tap from any LinkedIn/Naukri/Indeed job page to add it here.</p>
+      <a class="bookmarklet" id="bookmarklet-link" href="#">📌 save to watchtower</a>
+      <p class="hint" style="margin-top:8px">on mobile: bookmark this page, then edit the bookmark and replace the URL with the bookmarklet code below.</p>
+      <textarea id="bookmarklet-code" readonly rows="3"></textarea>
+    </section>
+
+    <section class="settings-section">
+      <h3>stats</h3>
+      <div id="stats-display"></div>
+    </section>
+  </div>
+</div>
+
+<!-- Add job modal -->
+<div class="modal hidden" id="add-modal">
+  <div class="modal-inner">
+    <button class="close" id="add-close">×</button>
+    <h2>add job manually</h2>
+    <p class="hint">paste from any job page. URL is required; the rest helps with matching.</p>
+    <label>job title</label>
+    <input type="text" id="add-title" placeholder="SOC Analyst L2">
+    <label>company</label>
+    <input type="text" id="add-company" placeholder="ACME Corp">
+    <label>location</label>
+    <input type="text" id="add-location" placeholder="Hyderabad / Remote">
+    <label>application URL</label>
+    <input type="url" id="add-url" placeholder="https://...">
+    <label>full job description (paste here)</label>
+    <textarea id="add-description" rows="8" placeholder="paste the JD here…"></textarea>
+    <button class="btn primary" id="add-submit">add to board</button>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
