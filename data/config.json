@@ -49,7 +49,7 @@
   ],
   "fetch_settings": {
     "max_jobs_per_source": 50,
-    "max_total_jobs_per_run": 500,
-    "stale_after_days": 30
+    "max_total_jobs_per_run": 1500,
+    "stale_after_days": 60
   }
 }
