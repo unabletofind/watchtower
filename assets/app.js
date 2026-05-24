@@ -590,6 +590,8 @@ function loadManualJobs() {
 
 function handleBookmarkletPayload() {
   const params = new URLSearchParams(window.location.search);
+
+  // Path 1: Bookmarklet (silent add — all fields already filled by the bookmarklet itself)
   if (params.get("add") === "1") {
     addManualJob({
       title: params.get("title") || "",
@@ -598,7 +600,47 @@ function handleBookmarkletPayload() {
       url: params.get("url") || "",
       description: params.get("desc") || "",
     });
-    // Clean URL
+    window.history.replaceState({}, "", window.location.pathname);
+    return;
+  }
+
+  // Path 2: Android share-target (opens the form pre-filled, user confirms)
+  const sharedUrl = params.get("shared_url");
+  const sharedTitle = params.get("shared_title");
+  const sharedText = params.get("shared_text");
+
+  if (sharedUrl || sharedTitle || sharedText) {
+    // Apps share inconsistently — some put the URL in `text`, some in `url`.
+    // Detect a URL in `text` if `url` is empty.
+    let finalUrl = sharedUrl || "";
+    let finalText = sharedText || "";
+    if (!finalUrl && finalText) {
+      const urlMatch = finalText.match(/https?:\/\/\S+/);
+      if (urlMatch) {
+        finalUrl = urlMatch[0];
+        finalText = finalText.replace(finalUrl, "").trim();
+      }
+    }
+
+    // Try to extract company from a LinkedIn URL or common patterns
+    let guessedCompany = "";
+    if (finalUrl.includes("linkedin.com/jobs")) {
+      guessedCompany = "(from LinkedIn — paste company)";
+    } else if (finalUrl.includes("naukri.com")) {
+      guessedCompany = "(from Naukri — paste company)";
+    }
+
+    // Open the add modal pre-filled
+    const setVal = (id, v) => { const el = document.getElementById(id); if (el && v) el.value = v; };
+    setVal("add-url", finalUrl);
+    setVal("add-title", sharedTitle || "");
+    setVal("add-company", guessedCompany);
+    setVal("add-description", finalText);
+
+    document.getElementById("add-modal").classList.remove("hidden");
+    toast("shared from another app — confirm and save");
+
+    // Clean URL so refresh doesn't re-trigger
     window.history.replaceState({}, "", window.location.pathname);
   }
 }
@@ -799,6 +841,28 @@ function wireUp() {
     });
     ["add-title","add-company","add-location","add-url","add-description"].forEach(id => document.getElementById(id).value = "");
     addModal.classList.add("hidden");
+  });
+
+  // Paste-from-clipboard helper in the add-job modal
+  document.getElementById("paste-clipboard-btn").addEventListener("click", async () => {
+    try {
+      const text = (await navigator.clipboard.readText()).trim();
+      if (!text) { toast("clipboard empty"); return; }
+      const urlMatch = text.match(/https?:\/\/\S+/);
+      if (urlMatch) {
+        document.getElementById("add-url").value = urlMatch[0];
+        // If there's text around the URL, put it in description
+        const rest = text.replace(urlMatch[0], "").trim();
+        if (rest.length > 50) document.getElementById("add-description").value = rest;
+        toast("URL pasted");
+      } else {
+        // No URL → assume the whole clipboard is the JD text
+        document.getElementById("add-description").value = text;
+        toast("pasted as JD — add URL manually");
+      }
+    } catch (e) {
+      toast("clipboard access denied — paste manually");
+    }
   });
 }
 
